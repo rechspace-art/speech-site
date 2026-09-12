@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  ============================================================
+  САЙТ «речь.» — тренер по технике речи, голосу, ораторике
+  Стиль: тёмный минимализм, без линий и рамок, только текст на чёрном.
+  Шрифт: Manrope (+ Playfair Display italic для акцентных слов).
+
+  ЧТО ЗАМЕНИТЬ ( ищите  [ЗАМЕНИТЬ]  ):
+   1. Логотип       — секция HERO: свой файл вместо CSS-плашки
+   2. Фото группы   — секция «Обо мне» (img src="group.jpg")
+   3. Биография     — секция «Обо мне»
+   4. YouTube       — секция «Контакты»: data-ytid="ID_ролика"
+   5. Контакты      — Telegram / YouTube / телефон / WhatsApp
+   6. Тексты/списки — по вкусу
+
+  ВЫЛОЖИТЬ БЕСПЛАТНО: перетащить файл на app.netlify.com/drop
+  ============================================================
+-->
+<title>речь.</title>
+<meta name="description" content="речь. — студия техники речи, голоса и ораторского искусства. Индивидуально, онлайн и очно.">
+<meta property="og:title" content="речь.">
+<meta property="og:description" content="Голос, которому верят. Техника речи, голос и ораторское искусство.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23000'/><text x='50' y='66' font-family='Arial' font-size='42' font-weight='700' fill='%23fff' text-anchor='middle'>речь.</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#060607;
+  --ink:#F4F3F1;
+  --muted:#8C8C93;
+  --faint:#54545B;
+  --maxw:1220px;
+  --gutter:clamp(22px,5vw,72px);
+  --font:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+/* отступ под фиксированное меню при переходах по якорям */
+#practice,#formats,#about,#contact{scroll-margin-top:68px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;line-height:1.6;font-size:clamp(16px,1.05vw,18px);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ink);color:var(--bg)}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.04em;line-height:1;text-wrap:balance}
+p{margin:0}
+em.se{font-style:normal;font-weight:300;letter-spacing:-.02em;color:var(--muted)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter);width:100%}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+:focus-visible{outline:1px solid var(--muted);outline-offset:4px}
+
+/* ---------- МЕНЮ (по центру, без рамки, некрупно) ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:center;gap:clamp(20px,3.4vw,46px);padding:26px 20px}
+.nav::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .4s ease;background:linear-gradient(to bottom,var(--bg) 15%,color-mix(in srgb,var(--bg) 62%,transparent) 65%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+.nav.scrolled::before{opacity:1}
+.nav a{font-size:14px;font-weight:500;letter-spacing:.02em;color:var(--muted);transition:color .3s ease;position:relative}
+.nav a:hover{color:var(--ink)}
+.nav .brand{position:absolute;left:var(--gutter);top:50%;transform:translateY(-50%) translateX(-8px);display:inline-flex;align-items:baseline;font-size:19px;font-weight:800;letter-spacing:-.05em;color:var(--ink);opacity:0;pointer-events:none;transition:opacity .45s ease,transform .45s ease}
+.nav.scrolled .brand{opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto}
+.nav .brand .dot{display:inline-block;width:.12em;height:.12em;border-radius:50%;background:var(--muted);margin-left:.08em;transform:translateY(-.02em)}
+@media (max-width:560px){ .nav{gap:16px;font-size:13px;padding:18px 12px} .nav a{font-size:13px} .nav .brand,.nav.scrolled .brand{display:none} }
+
+/* ---------- HERO / ЛОГОТИП ---------- */
+.hero{min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;padding:96px var(--gutter);position:relative}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(46% 40% at 50% 44%,rgba(180,190,220,.06),transparent 70%);pointer-events:none}
+/* [ЗАМЕНИТЬ] Логотип. Свой файл:  <img class="logo-img" src="logo.png" alt="речь.">
+   и удалите .logo-tile ниже. Пока — глянцевая плашка «речь.» */
+.logo-tile{
+  width:clamp(156px,26vw,248px);aspect-ratio:1;border-radius:26%;
+  display:grid;place-items:center;position:relative;overflow:hidden;
+  background:radial-gradient(135% 135% at 30% 16%,#3a3a43 0%,#1b1b21 46%,#08080a 100%);
+  box-shadow:
+    inset 0 2px 5px rgba(255,255,255,.28),
+    inset 0 -34px 70px rgba(0,0,0,.7),
+    0 0 0 1px rgba(255,255,255,.06),
+    0 50px 120px -36px rgba(0,0,0,1),
+    0 0 150px -30px rgba(150,162,196,.22);
+}
+.logo-tile::before{content:"";position:absolute;top:-34%;left:-12%;width:124%;height:78%;background:radial-gradient(62% 100% at 42% 0%,rgba(255,255,255,.28),transparent 72%);pointer-events:none}
+.logo-tile span{font-size:clamp(42px,7vw,70px);font-weight:700;letter-spacing:-.04em;color:#fff;position:relative}
+.logo-img{width:clamp(150px,26vw,240px);height:auto}
+/* Логотип-надпись (светлый, читается на чёрном) */
+.wordmark{position:relative;display:inline-block;font-size:clamp(72px,17vw,210px);font-weight:800;letter-spacing:-.06em;line-height:1;color:#fff;animation:heroIn 1.2s cubic-bezier(.2,.7,.15,1) both}
+.wordmark .dot{display:inline-block;width:.05em;height:.05em;border-radius:50%;background:currentColor;margin-left:.08em;vertical-align:baseline}
+.hero .tagline{margin-top:clamp(14px,1.8vw,22px);font-size:clamp(13px,1.05vw,15px);font-weight:400;letter-spacing:.01em;color:var(--muted);animation:fadeIn 1.6s ease .45s both}
+@keyframes heroIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}
+.hero .scrolldown{position:absolute;left:0;right:0;bottom:clamp(18px,3.5vh,40px);margin-inline:auto;display:flex;justify-content:center;align-items:center;width:48px;height:48px;color:var(--muted);animation:fadeIn 1.8s ease .9s both;transition:color .3s}
+.hero .scrolldown:hover{color:var(--ink)}
+.hero .scrolldown svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;animation:appleBob 2.1s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes appleBob{0%{transform:translateY(-4px);opacity:.3}28%{opacity:1}58%{transform:translateY(6px);opacity:.3}100%{transform:translateY(-4px);opacity:.3}}
+/* мобильный/планшет: «речь.» выше, стрелка ближе к слову, меньше чёрного снизу */
+@media (max-width:900px){
+  /* «речь.» вверху, стрелка ~70%; hero короче → «Практика» спрятана сразу за сгибом и появляется от небольшого скролла */
+  .hero{min-height:92svh;display:block;padding:clamp(170px,30vh,280px) var(--gutter) 0}
+  .hero > div{display:flex;flex-direction:column;align-items:center}
+  .hero .scrolldown{position:absolute;left:0;right:0;bottom:clamp(100px,18vh,160px);margin-inline:auto}
+  /* меньше пустого отступа сверху практики на мобильном/планшете */
+  .practice{padding-top:clamp(40px,6vh,72px)}
+}
+@media (prefers-reduced-motion:reduce){.wordmark,.hero .scrolldown,.hero .scrolldown svg{animation:none}}
+
+/* ---------- ОБЩИЕ ЗАГОЛОВКИ СЕКЦИЙ ---------- */
+.big{font-size:clamp(42px,8vw,104px);font-weight:700;letter-spacing:-.05em;line-height:.94}
+.sub{margin-top:22px;color:var(--muted);font-size:clamp(17px,1.5vw,21px);line-height:1.5;max-width:46ch}
+
+/* ---------- ПРАКТИКА (центр: заголовок в две толщины + блоки, по краям 4 картинки) ---------- */
+.practice{position:relative;padding:clamp(80px,11vh,140px) 0 clamp(70px,10vw,120px);overflow:visible}
+.practice .wrap{position:relative;z-index:2;text-align:center}
+/* Заголовок по центру, компактнее. Слова — разной толщины/цвета; запятые тоньше (regular) */
+.pr-head{max-width:none;margin-inline:auto;font-size:clamp(30px,4vw,54px);line-height:1.1}
+.pr-head .l1{white-space:nowrap}
+.pr-head .w-strong{color:var(--ink);font-weight:800}
+.pr-head .w-soft{color:var(--muted);font-weight:500}
+.pr-head .c{font-weight:400;color:var(--ink)}
+/* только мобильный переносит заголовок; планшет — в одну строку, как десктоп */
+@media (max-width:560px){ .pr-head{max-width:18ch} .pr-head .l1{white-space:normal} }
+.practice .sub{max-width:40ch;margin-inline:auto}
+
+/* Блоки процесса по центру страницы; слева от текста — белая вертикальная линия */
+.pr-blocks{margin:clamp(48px,7vw,96px) auto 0;display:flex;flex-direction:column;gap:clamp(40px,6vw,78px);width:max-content;max-width:100%;text-align:left}
+.pr-block{position:relative;padding-left:30px}
+.pr-block::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:2px;border-radius:2px;background:#fff;transform:scaleY(0);transform-origin:top;transition:transform 1s cubic-bezier(.2,.7,.15,1) .05s}
+.pr-block.in::before{transform:scaleY(1)}
+.pr-block h3{font-size:clamp(20px,2.6vw,30px);font-weight:600;letter-spacing:-.02em}
+.pr-block p{margin-top:12px;color:var(--muted);font-size:clamp(15px,1.5vw,18px);line-height:1.55;max-width:34ch}
+
+/* Плавающие стеклянные картинки — 2 слева, 2 справа (прозрачные PNG, без рамки). overflow:visible → не обрезаются */
+.floaters{position:absolute;inset:0;z-index:1;pointer-events:none}
+.floater{position:absolute}
+.floater img{width:100%;height:auto;display:block;filter:drop-shadow(0 26px 50px rgba(0,0,0,.55))}
+.floater .ph{width:100%;border-radius:22px;background:radial-gradient(120% 120% at 40% 25%,#3a3f52,#0d0d12);box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+/* позиции/наклон/размер заданы через визуальный редактор (#edit) — десктоп */
+.f1{left:6.5%;top:11.5%;right:auto;bottom:auto;width:264px;transform:rotate(-7deg)}
+.f1 .ph{aspect-ratio:5/3}
+.f2{left:8%;top:46%;right:auto;bottom:auto;width:322px;transform:rotate(-5deg)}
+.f2 .ph{aspect-ratio:2/3}
+.f3{left:66.5%;top:24.5%;right:auto;bottom:auto;width:198px;transform:rotate(6deg)}
+.f3 .ph{aspect-ratio:1/1}
+.f4{left:63%;top:53%;right:auto;bottom:auto;width:420px;transform:rotate(8deg)}
+.f4 .ph{aspect-ratio:5/3}
+/* планшет: лишнее по краям обрезаем + позиции из редактора (#edit) */
+@media (max-width:900px){ .practice{overflow:hidden} .floater{opacity:.85} }
+@media (min-width:561px) and (max-width:900px){
+  .f1{left:5.5%;top:27%;right:auto;bottom:auto;width:20.0vw;transform:rotate(-9deg)}
+  .f2{left:-1%;top:58.9%;right:auto;bottom:auto;width:27.1vw;transform:rotate(-8deg)}
+  .f3{left:68%;top:34%;right:auto;bottom:auto;width:18.0vw;transform:rotate(8deg)}
+  .f4{left:66.5%;top:67.5%;right:auto;bottom:auto;width:25.9vw;transform:rotate(10deg)}
+}
+/* мобильная — картинки остаются видны (по углам, за текстом) */
+@media (max-width:560px){
+  /* на мобильной картинки уходят за края и обрезаются секцией (иначе появлялся горизонтальный сдвиг вправо) */
+  .practice{overflow:hidden}
+  .floater{opacity:.6}
+  /* мобильные позиции из визуального редактора (#edit) */
+  .f1{left:-3%;top:26%;right:auto;bottom:auto;width:28.2vw;transform:rotate(-9deg)}
+  .f2{left:-5.5%;top:59%;right:auto;bottom:auto;width:24.8vw;transform:rotate(-8deg)}
+  .f3{left:66.5%;top:39%;right:auto;bottom:auto;width:22.8vw;transform:rotate(8deg)}
+  .f4{left:66.5%;top:69.5%;right:auto;bottom:auto;width:32.6vw;transform:rotate(10deg)}
+  /* заголовок заметно крупнее подзаголовка и блоков; подзаголовок не шире заголовка */
+  .pr-head{font-size:31px;max-width:15ch;line-height:1.12}
+  .practice .sub{font-size:15px;max-width:24ch}
+  /* весь блок Цель/Практика/Результат — на шаг меньше (текст + вертикальные линии) */
+  .pr-blocks{gap:clamp(30px,6vw,44px)}
+  .pr-block{padding-left:22px}
+  .pr-block h3{font-size:18px}
+  .pr-block p{font-size:13px;margin-top:9px}
+}
+@media (prefers-reduced-motion:reduce){.pr-block::before{transition:none}}
+
+/* ---------- ОСНОВНЫЕ ЗАПРОСЫ (стекло; свет «зажигает» буквы) ---------- */
+.requests{padding:clamp(16px,2.5vw,40px) 0 clamp(60px,9vw,110px)}
+.rq-card{position:relative;overflow:hidden;isolation:isolate;border:1px solid rgba(255,255,255,.10);border-radius:26px;background:rgba(255,255,255,.035);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);padding:clamp(30px,3.6vw,58px) clamp(26px,3.4vw,54px);transition:border-color .4s ease}
+.rq-card:hover{border-color:rgba(255,255,255,.2)}
+.rq-head-in{margin-bottom:clamp(24px,3.2vw,42px)}
+.rq-head-in h2{font-size:clamp(28px,4vw,50px);font-weight:300;letter-spacing:-.035em}
+.rq-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(6px,1vw,14px) clamp(30px,6vw,80px)}
+.rq-list li{font-size:clamp(18px,2vw,25px);font-weight:400;letter-spacing:-.01em;color:var(--muted);padding:13px 0;display:flex;align-items:baseline;gap:16px}
+.rq-list li::before{content:"";flex:0 0 6px;width:6px;height:6px;border-radius:50%;background:var(--faint);transform:translateY(-.28em)}
+/* базовый (приглушённый) слой и «светлый» слой поверх — идеально совмещены */
+.rq-inner{position:relative;z-index:1}
+.rq-lit{position:absolute;inset:0;z-index:2;padding:inherit;pointer-events:none}
+/* подсвеченный слой — светло-серый с лёгким градиентом (не чисто белый) */
+.rq-lit .rq-list li,.rq-lit .rq-head-in h2{background:linear-gradient(180deg,#D7DCE6 0%,#9AA1AE 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#B9BEC9;text-shadow:none}
+.rq-lit .rq-list li::before{background:#B9BEC9;-webkit-text-fill-color:initial}
+/* светлый слой скрыт; после прохода блика надписи МЕДЛЕННО и плавно загораются и остаются: сначала 2-й столбец, затем 1-й */
+.js .rq-lit .rq-head-in h2,.js .rq-lit .rq-list li{opacity:0;transition:opacity 1.2s ease}
+.js .rq-card.lit-go .rq-lit .rq-head-in h2,.js .rq-card.lit-go .rq-lit .rq-list li{opacity:1}
+.rq-card.lit-go .rq-lit .rq-head-in h2{transition-delay:1.0s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(2){transition-delay:1.7s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(4){transition-delay:2.1s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(6){transition-delay:2.5s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(8){transition-delay:2.9s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(1){transition-delay:3.5s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(3){transition-delay:3.9s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(5){transition-delay:4.3s}
+.rq-card.lit-go .rq-lit .rq-list li:nth-child(7){transition-delay:4.7s}
+/* свет-намёк: мягкий блик МЕДЛЕННО проходит справа налево и ОСТАЁТСЯ в левом нижнем углу */
+.rq-sheen{position:absolute;z-index:0;bottom:-46%;left:0;width:58%;height:82%;pointer-events:none;border-radius:50%;filter:blur(66px);background:radial-gradient(circle,rgba(205,214,230,.44),transparent 66%);opacity:0;transform:translateX(150%)}
+.rq-card.lit-go .rq-sheen{animation:sheenPass 6.6s ease-in-out forwards}
+@keyframes sheenPass{0%{transform:translateX(150%);opacity:0}14%{opacity:.6}100%{transform:translateX(-26%);opacity:.42}}
+@media (max-width:640px){ .rq-list{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){.js .rq-lit .rq-head-in h2,.js .rq-lit .rq-list li{opacity:1;transition:none}.rq-sheen{display:none}}
+
+/* ---------- ФОРМАТЫ (2 карточки, по референсу) ---------- */
+.formats{padding:clamp(40px,5vw,64px) 0 clamp(88px,13vw,150px)}
+.formats .fhead{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+.formats .fhead h2{font-size:clamp(40px,7vw,92px);font-weight:700;letter-spacing:-.05em}
+.formats .fhead .os{color:var(--faint);font-size:14px}
+.fcards{margin-top:clamp(46px,6vw,80px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,34px)}
+.fcard2{border:1px solid rgba(244,243,241,.10);border-radius:24px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 40%);transition:border-color .4s ease,transform .4s ease}
+.fcard2:hover{border-color:rgba(244,243,241,.24);transform:translateY(-5px)}
+.fcard2 .pic{position:relative;aspect-ratio:16/11;overflow:hidden}
+.fcard2 .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fcard2 .pic .ph{position:absolute;inset:0;width:100%;height:100%}
+.fcard2 .body{padding:clamp(24px,2.6vw,38px)}
+.fcard2 .top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.fcard2 .lbl{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+.fcard2 .arrow{flex:0 0 auto;width:46px;height:46px;border-radius:50%;border:1px solid rgba(244,243,241,.18);display:grid;place-items:center;transition:background .35s,border-color .35s,transform .35s}
+.fcard2:hover .arrow{background:rgba(244,243,241,.08);transform:rotate(0) scale(1.05)}
+.fcard2 .arrow svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fcard2 h3{margin-top:26px;font-size:clamp(26px,3.2vw,42px);font-weight:700;letter-spacing:-.035em}
+.fcard2 p{margin-top:16px;color:var(--muted);font-size:16px;line-height:1.6;max-width:46ch}
+.g-ind{background:radial-gradient(120% 120% at 30% 20%,#20304a 0%,#0a0d16 60%,#050506 100%)}
+.g-corp{background:radial-gradient(120% 120% at 70% 25%,#3a2f4a 0%,#141018 55%,#050506 100%)}
+@media (max-width:760px){ .fcards{grid-template-columns:1fr} }
+
+/* ---------- ОБО МНЕ ---------- */
+.about{padding:clamp(40px,5vw,64px) 0 clamp(88px,13vw,150px)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,6vw,80px);align-items:center}
+.about-photo{border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:#111116}
+.about-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.03) brightness(.95)}
+.about-bio .big{font-size:clamp(34px,5vw,62px)}
+.about-bio .lead{margin-top:24px;font-size:clamp(18px,1.6vw,22px);color:var(--ink);max-width:44ch}
+.about-bio .lead .fine{font-size:.66em;color:var(--ink);letter-spacing:0}
+.about-bio p.mut{margin-top:16px;color:var(--muted);max-width:48ch}
+.about-bio .facts{margin-top:32px;display:flex;flex-direction:column;gap:16px}
+.about-bio .facts div{display:grid;grid-template-columns:130px 1fr;gap:18px;font-size:15px}
+.about-bio .facts .k{color:var(--faint)}
+@media (max-width:820px){ .about-grid{grid-template-columns:1fr;gap:36px} .about-photo{max-width:420px} }
+
+/* ---------- КОНТАКТЫ ---------- */
+.contact{padding:clamp(40px,5vw,64px) 0 clamp(70px,10vw,120px)}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,84px);align-items:center}
+.clinks{margin-top:clamp(34px,5vw,54px);display:flex;flex-direction:column;gap:6px}
+.clink{display:flex;align-items:center;gap:16px;padding:16px 0;font-size:clamp(18px,2vw,26px);font-weight:500;letter-spacing:-.02em;color:var(--ink);transition:color .3s,transform .3s}
+.clink:hover{transform:translateX(8px)}
+.clink svg{width:22px;height:22px;flex:0 0 22px;fill:var(--muted);transition:fill .3s}
+.clink:hover svg{fill:var(--ink)}
+.clink .meta{color:var(--faint);font-size:14px;font-weight:400;margin-left:auto;letter-spacing:0}
+/* YouTube плеер (вертикальный, под Shorts) */
+.ytwrap{justify-self:center;width:min(300px,80vw)}
+.yt{position:relative;aspect-ratio:9/16;border-radius:22px;overflow:hidden;background:#0e0e12;cursor:pointer;box-shadow:0 40px 90px -40px rgba(0,0,0,.9)}
+.yt .ph{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 30%,#1c1c22,#050506)}
+.yt img.thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.yt .play{position:absolute;inset:0;margin:auto;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);transition:transform .3s}
+.yt:hover .play{transform:scale(1.08)}
+.yt .play::before{content:"";width:0;height:0;margin-left:5px;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.yt .cap{position:absolute;left:0;right:0;bottom:0;padding:16px;font-size:13px;color:var(--muted);background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media (max-width:820px){ .contact-grid{grid-template-columns:1fr;gap:44px} .ytwrap{justify-self:start} }
+
+/* ---------- FOOTER ---------- */
+footer{padding:40px 0 60px;text-align:center;color:var(--faint);font-size:13px;letter-spacing:.04em}
+footer .lg{font-size:20px;font-weight:700;letter-spacing:-.03em;color:var(--ink);margin-bottom:10px}
+
+/* ---------- АНИМАЦИИ ПОЯВЛЕНИЯ ---------- */
+.js .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.15,1),transform 1s cubic-bezier(.2,.7,.15,1)}
+.js .reveal.in{opacity:1;transform:none}
+.js .hero .logo-tile,.js .hero .logo-img{opacity:0;transform:scale(.92);transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.7,.15,1)}
+.js .hero.in .logo-tile,.js .hero.in .logo-img{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .reveal,.js .hero .logo-tile,.js .hero .logo-img{opacity:1!important;transform:none!important;transition:none}
+}
+
+/* ============================================================
+   РЕДАКТОР КАРТИНОК (только при #edit в адресе; на обычный сайт не влияет)
+   ============================================================ */
+.editing .floaters{pointer-events:none}
+.editing .floater{pointer-events:auto;cursor:move;outline:1px dashed rgba(255,255,255,.28)}
+.editing .floater.sel{outline:2px solid #6da8ff}
+#ed{position:fixed;left:16px;bottom:16px;z-index:999;width:280px;max-width:calc(100vw - 32px);background:rgba(16,16,20,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px;color:#F4F3F1;font:13px/1.4 var(--font);box-shadow:0 24px 60px -20px rgba(0,0,0,.8)}
+#ed h4{margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:0}
+#ed .bp{font-size:11px;color:#8C8C93;margin-bottom:10px}
+#ed .bp b{color:#6da8ff}
+#ed .imgs{display:flex;gap:6px;margin-bottom:10px}
+#ed .imgs button{flex:1;padding:7px 0;border:1px solid rgba(255,255,255,.16);background:transparent;color:#F4F3F1;border-radius:8px;cursor:pointer;font:600 12px var(--font)}
+#ed .imgs button.on{background:#6da8ff;border-color:#6da8ff;color:#08121f}
+#ed label{display:block;margin:9px 0 3px;font-size:11px;color:#8C8C93}
+#ed .row{display:flex;align-items:center;gap:8px}
+#ed input[type=range]{flex:1;accent-color:#6da8ff}
+#ed .val{width:52px;text-align:right;font-variant-numeric:tabular-nums;color:#F4F3F1}
+#ed .btns{display:flex;gap:6px;margin-top:12px}
+#ed .btns button{flex:1;padding:8px 0;border-radius:8px;border:1px solid rgba(255,255,255,.16);background:transparent;color:#F4F3F1;cursor:pointer;font:600 12px var(--font)}
+#ed .btns button.primary{background:#6da8ff;border-color:#6da8ff;color:#08121f}
+#ed textarea{width:100%;height:78px;margin-top:10px;background:#0b0b0e;color:#cdd3dc;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px;font:11px/1.35 ui-monospace,Menlo,monospace;resize:vertical}
+#ed .hint{font-size:10px;color:#54545B;margin-top:8px}
+</style>
+</head>
+<body>
+
+<!-- ---------- МЕНЮ ---------- -->
+<nav class="nav" id="nav" aria-label="Меню">
+  <a class="brand" href="#top" aria-label="речь. — в начало">речь<i class="dot" aria-hidden="true"></i></a>
+  <a href="#practice">практика</a>
+  <a href="#formats">форматы</a>
+  <a href="#about">обо мне</a>
+  <a href="#contact">контакты</a>
+</nav>
+
+<main id="top">
+
+<!-- ---------- 1. HERO / ЛОГОТИП ---------- -->
+<header class="hero" id="hero">
+  <div>
+    <!-- [ЗАМЕНИТЬ] на свой логотип (светлый вариант для тёмного фона):
+         <img class="logo-img" src="logo.png" alt="речь."> -->
+    <div class="wordmark" aria-label="речь.">речь<i class="dot" aria-hidden="true"></i></div>
+    <a class="scrolldown" href="#practice" aria-label="Прокрутить вниз">
+      <svg viewBox="0 0 24 24"><polyline points="6 10 12 16 18 10"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ---------- 2. ПРАКТИКА (заголовок в две толщины + блоки Цель/Практика/Результат) ---------- -->
+<section class="practice" id="practice">
+  <!-- Плавающие картинки. Положите файлы в site/assets/ с именами ниже; пока их нет — виден градиент. -->
+  <!-- 4 плавающих картинки (прозрачные PNG). Файлы в site/assets/: practice-1..4.png. Пока нет — виден градиент-заглушка. -->
+  <div class="floaters" aria-hidden="true">
+    <div class="floater f1"><div class="ph"></div><img src="assets/practice-1.png" alt="" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+    <div class="floater f2"><div class="ph"></div><img src="assets/practice-2.png" alt="" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+    <div class="floater f3"><div class="ph"></div><img src="assets/practice-3.png" alt="" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+    <div class="floater f4"><div class="ph"></div><img src="assets/practice-4.png" alt="" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'"></div>
+  </div>
+  <div class="wrap">
+    <h2 class="big pr-head reveal"><span class="l1"><span class="w-strong">ДИКЦИЯ</span><span class="c">,</span> <span class="w-soft">ГОЛОС</span><span class="c">,</span> <span class="w-strong">КОММУНИКАЦИЯ</span><span class="c">,</span></span><br><span class="w-strong">ОРАТОРСКОЕ</span> <span class="w-soft">ИСКУССТВО</span></h2>
+    <p class="sub reveal">Программа собирается под вашу задачу.</p>
+    <div class="pr-blocks">
+      <div class="pr-block reveal"><h3>Цель</h3><p>Записываем и анализируем вашу речь, определяем сильные стороны и то, что можно улучшить.</p></div>
+      <div class="pr-block reveal"><h3>Практика</h3><p>Развиваем нужные навыки и переносим их в реальные тексты и ситуации.</p></div>
+      <div class="pr-block reveal"><h3>Результат</h3><p>Слушаем запись «до и после» и слышим разницу. Навык остаётся с вами.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- ОСНОВНЫЕ ЗАПРОСЫ ---------- -->
+<section class="requests" id="requests">
+  <div class="wrap">
+    <div class="rq-card reveal">
+      <span class="rq-sheen" aria-hidden="true"></span>
+      <div class="rq-inner">
+        <div class="rq-head-in"><h2>Основные запросы</h2></div>
+        <ul class="rq-list">
+          <li>Уверенная речь</li>
+          <li>Чёткая дикция</li>
+          <li>Сильный и выразительный голос</li>
+          <li>Публичные выступления</li>
+          <li>Речь для видео, подкастов и эфиров</li>
+          <li>Деловые переговоры и совещания</li>
+        </ul>
+      </div>
+      <div class="rq-inner rq-lit" aria-hidden="true">
+        <div class="rq-head-in"><h2>Основные запросы</h2></div>
+        <ul class="rq-list">
+          <li>Уверенная речь</li>
+          <li>Чёткая дикция</li>
+          <li>Сильный и выразительный голос</li>
+          <li>Публичные выступления</li>
+          <li>Речь для видео, подкастов и эфиров</li>
+          <li>Деловые переговоры и совещания</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- 3. ФОРМАТЫ ---------- -->
+<section class="formats" id="formats">
+  <div class="wrap">
+    <div class="fhead">
+      <h2 class="reveal">Как начать</h2>
+      <span class="os reveal">Форматы</span>
+    </div>
+    <div class="fcards">
+      <article class="fcard2 reveal">
+        <!-- Фото формата. Файл: site/assets/format-individual.png (пока нет — виден градиент). -->
+        <div class="pic"><div class="ph g-ind"></div><img src="assets/format-individual.png" alt="" onerror="this.style.display='none'"></div>
+        <div class="body">
+          <div class="top">
+            <span class="lbl">Очные или онлайн-встречи</span>
+            <a class="arrow" href="#contact" aria-label="Записаться"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+          <h3>Индивидуально</h3>
+          <p>Персональные занятия в профессиональной студии в центре Москвы или онлайн — из любой точки мира.</p>
+        </div>
+      </article>
+      <article class="fcard2 reveal">
+        <!-- Фото формата. Файл: site/assets/format-corporate.png (пока нет — виден градиент). -->
+        <div class="pic"><div class="ph g-corp"></div><img src="assets/format-corporate.png" alt="" onerror="this.style.display='none'"></div>
+        <div class="body">
+          <div class="top">
+            <span class="lbl">Для бизнеса</span>
+            <a class="arrow" href="#contact" aria-label="Обсудить задачу"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+          <h3>Корпоративные тренинги</h3>
+          <p>Коммуникация, переговоры, публичные выступления.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- 4. ОБО МНЕ ---------- -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <figure class="about-photo reveal" style="margin:0">
+      <!-- Фото для блока «Обо мне». Файл: site/assets/about.png (пока нет — виден серый плейсхолдер). -->
+      <img src="assets/about.png" alt="Дмитрий Фролов" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'1000\'><rect width=\'100%25\' height=\'100%25\' fill=\'%23111116\'/><text x=\'50%25\' y=\'50%25\' font-family=\'Arial\' font-size=\'26\' fill=\'%238C8C93\' text-anchor=\'middle\'>ФОТО</text></svg>'">
+    </figure>
+    <div class="about-bio">
+      <p class="eyebrow reveal">Обо мне</p>
+      <h2 class="big reveal" style="margin-top:18px">Дмитрий<br><em class="se">Фролов</em></h2>
+     <p class="lead reveal">Окончил РГИСИ <span class="fine">(кафедра актёрского искусства).</span></p>
+      <p class="mut reveal">Более 10 лет специализируюсь на развитии голоса, речи и навыков эффективной коммуникации.</p>
+      <p class="mut reveal" style="color:var(--ink)">В основе занятий — практический подход, объединяющий инструменты актёрского мастерства, техники развития речи и современные методики коммуникации. Основное внимание уделяется практическому применению навыков в общении и публичных выступлениях.</p>
+  </div>
+</section>
+
+<!-- ---------- 5. КОНТАКТЫ ---------- -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow reveal">Контакты</p>
+      <div class="clinks">
+        <!-- [ЗАМЕНИТЬ] реальные ссылки/номер -->
+        <a class="clink reveal" href="https://t.me/username" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M9.8 15.6l-.4 4.2c.5 0 .8-.2 1.1-.5l2.6-2.5 5.4 3.9c1 .5 1.7.3 1.9-.9l3.4-16c.3-1.4-.5-2-1.5-1.6L1.2 9.3C-.1 9.8-.1 10.6 1 10.9l5.4 1.7L18.9 5c.6-.4 1.1-.2.7.2z"/></svg>
+          Telegram <span class="meta">@username</span>
+        </a>
+        <a class="clink reveal" href="https://wa.me/70000000000" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.4.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4zM12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.6c1.7 1 3.7 1.5 5.7 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0z"/></svg>
+          WhatsApp <span class="meta">+7 000 000-00-00</span>
+        </a>
+        <a class="clink reveal" href="tel:+70000000000">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1z"/></svg>
+          Телефон <span class="meta">+7 000 000-00-00</span>
+        </a>
+        <a class="clink reveal" href="https://youtube.com/@username" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg>
+          Смотреть канал <span class="meta">YouTube</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="ytwrap reveal">
+      <!-- [ЗАМЕНИТЬ] ID ролика/Shorts (из ссылки youtube.com/shorts/XXXX или watch?v=XXXX) -->
+      <div class="yt" data-ytid="" role="button" tabindex="0" aria-label="Смотреть видео">
+        <div class="ph"></div>
+        <div class="play" aria-hidden="true"></div>
+        <div class="cap">Видео из блога · впишите ID ролика</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="lg">речь.</div>
+    <div>© 2026 · техника речи, голос и ораторское искусство</div>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Появление при скролле
+  var items=document.querySelectorAll('.reveal, .hero');
+  if(reduce||!('IntersectionObserver'in window)){items.forEach(function(el){el.classList.add('in')})}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:0.12});items.forEach(function(el){io.observe(el)})}
+
+  // «речь.» слева в меню появляется, когда ушли с первой страницы
+  var navEl=document.getElementById('nav');
+  var onNav=function(){navEl.classList.toggle('scrolled', window.scrollY > window.innerHeight*0.72)};
+  onNav();window.addEventListener('scroll',onNav,{passive:true});
+
+
+  // Меню: плавный переход к разделам (надёжно, поверх нативных якорей)
+  document.querySelectorAll('.nav a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});history.replaceState(null,'',a.getAttribute('href'));}
+    });
+  });
+
+  // «Практика»: заголовок, подзаголовок и блоки Цель/Практика/Результат появляются по мере скролла
+  // (вертикальная линия у каждого блока «вырастает») — через общий observer .reveal / .in выше.
+
+  // «Основные запросы»: блик-намёк проходит один раз, затем надписи плавно загораются
+  var rqCard=document.querySelector('.rq-card');
+  if(rqCard){
+    if(reduce||!('IntersectionObserver'in window)){ rqCard.classList.add('lit-go'); }
+    else{
+      var lo=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('lit-go');lo.unobserve(e.target)}})},{threshold:0.3});
+      lo.observe(rqCard);
+    }
+  }
+
+  // YouTube: показать превью и включить по клику (если задан data-ytid)
+  var yt=document.querySelector('.yt');
+  if(yt){
+    var id=yt.getAttribute('data-ytid');
+    if(id){
+      var im=document.createElement('img');im.className='thumb';im.src='https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg';im.alt='';
+      im.onerror=function(){this.src='https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'};
+      yt.insertBefore(im,yt.firstChild);
+      var play=function(){yt.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" title="Видео" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'};
+      yt.addEventListener('click',play);
+      yt.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play()}});
+    }
+  }
+
+  /* ================= РЕДАКТОР КАРТИНОК (#edit, ?edit или Alt+E) ================= */
+  function editRequested(){ return (location.hash+location.search).indexOf('edit')>=0 }
+  function openEditor(){ if(!document.getElementById('ed')) initFloaterEditor(); }
+  if(editRequested()){ openEditor(); }
+  window.addEventListener('hashchange',function(){ if(editRequested()) openEditor(); });
+  window.addEventListener('keydown',function(e){ if(e.altKey && (e.key==='e'||e.key==='E'||e.code==='KeyE')){ e.preventDefault(); openEditor(); } });
+
+  function initFloaterEditor(){
+    var sec=document.querySelector('.practice');
+    var floaters=['f1','f2','f3','f4'].map(function(c){return sec.querySelector('.'+c)});
+    if(!sec||floaters.some(function(f){return !f})) return;
+    document.body.classList.add('editing');
+    document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')}); // чтобы всё было видно
+
+    var KEY='rechFloaters';
+    var store={desktop:{},tablet:{},mobile:{}};
+    try{var s=localStorage.getItem(KEY);if(s){store=JSON.parse(s);store.tablet=store.tablet||{}}}catch(e){}
+    function save(){try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}}
+    function bp(){var w=window.innerWidth;return w<=560?'mobile':(w<=900?'tablet':'desktop')}
+    function bpName(){return bp()==='mobile'?'мобильный':(bp()==='tablet'?'планшет':'десктоп')}
+    function rotOf(el){var t=getComputedStyle(el).transform;if(!t||t==='none')return 0;var m=t.match(/matrix\(([^)]+)\)/);if(!m)return 0;var p=m[1].split(',').map(Number);return Math.round(Math.atan2(p[1],p[0])*180/Math.PI)}
+    function seed(el){return {x:+(el.offsetLeft/sec.offsetWidth*100).toFixed(1), y:+(el.offsetTop/sec.offsetHeight*100).toFixed(1), w:Math.round(el.offsetWidth), r:rotOf(el), vp:window.innerWidth}}
+    function idx(el){return floaters.indexOf(el)}
+    function key(el){return 'f'+(idx(el)+1)}
+    function apply(el){var v=store[bp()][key(el)];if(!v)return;el.style.left=v.x+'%';el.style.top=v.y+'%';el.style.right='auto';el.style.bottom='auto';el.style.width=v.w+'px';el.style.transform='rotate('+v.r+'deg)'}
+    function ensure(){var b=bp();store[b]=store[b]||{};floaters.forEach(function(el){if(!store[b][key(el)])store[b][key(el)]=seed(el);apply(el)})}
+
+    var sel=floaters[0];
+    function selectEl(el){sel=el;floaters.forEach(function(f){f.classList.toggle('sel',f===el)});syncSliders()}
+
+    // панель
+    var ed=document.createElement('div');ed.id='ed';ed.innerHTML=
+      '<h4>Редактор картинок</h4>'+
+      '<div class="bp">Режим: <b id="edbp"></b> · меняй ширину окна, чтобы переключить</div>'+
+      '<div class="imgs">'+[1,2,3,4].map(function(n){return '<button data-i="'+(n-1)+'">'+n+'</button>'}).join('')+'</div>'+
+      '<label>Позиция X <span class="val" id="vx"></span></label><div class="row"><input type="range" id="rx" min="-40" max="100" step="0.5"></div>'+
+      '<label>Позиция Y <span class="val" id="vy"></span></label><div class="row"><input type="range" id="ry" min="-10" max="100" step="0.5"></div>'+
+      '<label>Ширина <span class="val" id="vw"></span></label><div class="row"><input type="range" id="rw" min="60" max="760" step="2"></div>'+
+      '<label>Поворот <span class="val" id="vr"></span></label><div class="row"><input type="range" id="rr" min="-45" max="45" step="1"></div>'+
+      '<div class="btns"><button class="primary" id="ecopy">Скопировать CSS</button><button id="ereset">Сбросить</button></div>'+
+      '<textarea id="eout" readonly></textarea>'+
+      '<div class="hint">Можно и мышью: тяни картинку. Значения сохраняются в этом браузере.</div>';
+    document.body.appendChild(ed);
+
+    var rx=ed.querySelector('#rx'),ry=ed.querySelector('#ry'),rw=ed.querySelector('#rw'),rr=ed.querySelector('#rr');
+    function syncSliders(){var v=store[bp()][key(sel)];ed.querySelector('#edbp').textContent=bpName();
+      rx.value=v.x;ry.value=v.y;rw.value=v.w;rr.value=v.r;
+      ed.querySelector('#vx').textContent=v.x+'%';ed.querySelector('#vy').textContent=v.y+'%';ed.querySelector('#vw').textContent=v.w+'px';ed.querySelector('#vr').textContent=v.r+'°';
+      floaters.forEach(function(f,i){ed.querySelectorAll('.imgs button')[i].classList.toggle('on',f===sel)});}
+    function upd(prop,val){var v=store[bp()][key(sel)];v[prop]=val;v.vp=window.innerWidth;apply(sel);save();syncSliders()}
+    rx.oninput=function(){upd('x',+this.value)};ry.oninput=function(){upd('y',+this.value)};
+    rw.oninput=function(){upd('w',+this.value)};rr.oninput=function(){upd('r',+this.value)};
+    ed.querySelectorAll('.imgs button').forEach(function(b){b.onclick=function(){selectEl(floaters[+b.dataset.i])}});
+
+    // перетаскивание мышью
+    var drag=null;
+    floaters.forEach(function(el){el.addEventListener('pointerdown',function(e){e.preventDefault();selectEl(el);drag={el:el,sx:e.clientX,sy:e.clientY,ox:store[bp()][key(el)].x,oy:store[bp()][key(el)].y};el.setPointerCapture(e.pointerId)})});
+    window.addEventListener('pointermove',function(e){if(!drag)return;var dxp=(e.clientX-drag.sx)/sec.offsetWidth*100;var dyp=(e.clientY-drag.sy)/sec.offsetHeight*100;var v=store[bp()][key(drag.el)];v.x=+(drag.ox+dxp).toFixed(1);v.y=+(drag.oy+dyp).toFixed(1);v.vp=window.innerWidth;apply(drag.el);syncSliders()});
+    window.addEventListener('pointerup',function(){if(drag){drag=null;save()}});
+
+    function cssFor(b){var o=store[b];if(!o)return '';var useVw=(b!=='desktop');var lines=['f1','f2','f3','f4'].map(function(k){var v=o[k];if(!v)return '';var w=useVw?((v.w/(v.vp||window.innerWidth)*100).toFixed(1)+'vw'):(v.w+'px');return '.'+k+'{left:'+v.x+'%;top:'+v.y+'%;right:auto;bottom:auto;width:'+w+';transform:rotate('+v.r+'deg)}'}).filter(Boolean);
+      if(!lines.length)return '';
+      if(b==='mobile')return '@media (max-width:560px){\n  '+lines.join('\n  ')+'\n}';
+      if(b==='tablet')return '@media (min-width:561px) and (max-width:900px){\n  '+lines.join('\n  ')+'\n}';
+      return lines.join('\n')}
+    ed.querySelector('#ecopy').onclick=function(){var txt='/* десктоп */\n'+cssFor('desktop')+'\n\n/* планшет */\n'+cssFor('tablet')+'\n\n/* мобильный */\n'+cssFor('mobile');ed.querySelector('#eout').value=txt;try{navigator.clipboard.writeText(txt)}catch(e){}this.textContent='Скопировано ✓';var b=this;setTimeout(function(){b.textContent='Скопировать CSS'},1400)};
+    ed.querySelector('#ereset').onclick=function(){delete store[bp()][key(sel)];store[bp()][key(sel)]=seed(sel);['left','top','right','bottom','width','transform'].forEach(function(p){sel.style[p]=''});ensure();syncSliders()};
+
+    window.addEventListener('resize',function(){ensure();syncSliders()});
+    ensure();selectEl(floaters[0]);
+  }
+</script>
+</body>
+</html>

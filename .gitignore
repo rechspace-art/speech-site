@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Локальная копия для Claude-артефакта (для сайта не нужна)
+artifact.html
